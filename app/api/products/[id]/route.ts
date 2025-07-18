@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 // Tipe konteks route dynamic (params)
@@ -8,7 +8,7 @@ type Context = {
   };
 };
 
-export async function DELETE(request: Request, context: Context) {
+export async function DELETE(request: NextRequest, context: Context) {
   try {
     const { id } = context.params;
 
@@ -30,7 +30,7 @@ export async function DELETE(request: Request, context: Context) {
   }
 }
 
-export async function PUT(request: Request, context: Context) {
+export async function PUT(request: NextRequest, context: Context) {
   try {
     const { id } = context.params;
     const body = await request.json();
