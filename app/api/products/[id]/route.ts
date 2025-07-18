@@ -17,10 +17,10 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
       message: "Produk berhasil dihapus",
       data: deletedProduct,
     });
-  } catch (error) {
-    console.error("Gagal menghapus produk:", error);
-    return NextResponse.json({ error: "Gagal menghapus produk" }, { status: 500 });
-  }
+  } catch {
+  return NextResponse.json({ error: "Gagal ..." }, { status: 500 });
+}
+
 }
 
 export async function PUT(request: Request, { params }: { params: { id: string } }) {
@@ -45,8 +45,8 @@ export async function PUT(request: Request, { params }: { params: { id: string }
       message: "Produk berhasil diperbarui",
       data: updatedProduct,
     });
-  } catch (error) {
-    console.error("Gagal memperbarui produk:", error);
-    return NextResponse.json({ error: "Gagal memperbarui produk" }, { status: 500 });
-  }
+  } catch {
+  return NextResponse.json({ error: "Gagal memperbarui produk" }, { status: 500 });
+}
+
 }
