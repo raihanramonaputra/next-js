@@ -1,9 +1,16 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+// Tipe konteks route dynamic (params)
+type Context = {
+  params: {
+    id: string;
+  };
+};
+
+export async function DELETE(request: Request, context: Context) {
   try {
-    const id = params.id;
+    const { id } = context.params;
 
     if (!id || isNaN(Number(id))) {
       return NextResponse.json({ error: "ID produk tidak valid" }, { status: 400 });
@@ -23,9 +30,9 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
   }
 }
 
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, context: Context) {
   try {
-    const id = params.id;
+    const { id } = context.params;
     const body = await request.json();
 
     if (!id || isNaN(Number(id))) {
